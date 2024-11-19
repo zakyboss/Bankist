@@ -91,3 +91,39 @@ const displayMovements = function (movement){
   })
 }
 displayMovements(account1.movements)
+
+const user = 'Steven Thomas Williams';
+// const username = user.toLowerCase().split(" ").map((name)=> {
+//   return  name[0]
+// }).join("")
+// console.log(username)
+
+const createUsername= function (accs) {
+ accs.forEach(function (acc){
+  acc.username = acc.owner.toLowerCase().split(" ").map((names)=> {
+    return  names[0]
+  }).join("") 
+ })
+ 
+ 
+ 
+  const username= user.toLowerCase().split(" ").map((names)=> {
+  return  names[0]
+}).join("") 
+return username
+}
+createUsername(accounts)
+// console.log(createUsername( 'Jessica Davis'))
+
+console.log(accounts)
+
+
+
+
+
+
+
+
+
+
+
