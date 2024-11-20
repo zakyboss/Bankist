@@ -97,16 +97,14 @@ const user = 'Steven Thomas Williams';
 //   return  name[0]
 // }).join("")
 // console.log(username)
-
+//  creating Username initials 
 const createUsername= function (accs) {
  accs.forEach(function (acc){
   acc.username = acc.owner.toLowerCase().split(" ").map((names)=> {
     return  names[0]
   }).join("") 
  })
- 
- 
- 
+
   const username= user.toLowerCase().split(" ").map((names)=> {
   return  names[0]
 }).join("") 
@@ -114,8 +112,28 @@ return username
 }
 createUsername(accounts)
 // console.log(createUsername( 'Jessica Davis'))
+const finalBalance = function (acc) {
+  let balance = acc.movements.reduce((accumulator, current) => accumulator + current, 0);
+  labelBalance.textContent = `${balance}€`; // Update the balance value in the UI
+  console.log(balance);
+};
 
-console.log(accounts)
+finalBalance(account1); 
+
+
+
+let calDisplaySummary= function (movements)
+{
+  const incomes= movements.filter(mov=>mov>0).reduce((accumulator, current) => accumulator + current, 0);;
+labelSumIn.textContent=`${incomes}Eur`
+const expense= movements.filter((mov)=>mov<0).reduce((accumulator,current)=>accumulator+current,0);
+labelSumOut.textContent= `${Math.abs(expense)}Eur`
+const interest = movements.filter(mov=>mov>0).map(deposit=>deposit*(12/100)).filter(int=>{
+  return int >= 2}).reduce((accumulator,current)=>accumulator+current,0)
+labelSumInterest.textContent=`${interest}Eur`
+}
+calDisplaySummary(account1.movements)
+// Calculating final Balance ;
 
 
 
