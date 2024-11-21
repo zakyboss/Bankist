@@ -255,6 +255,19 @@ btnSort.addEventListener('click',function(e){
 })
 
 
+//       Coding Challenge 
+// Calculate all the deposits in all the accoun
+let calculateSumOfDeposits = function(acc){
+  console.log(accounts)
+  let storeAllMovements = accounts.map(value=> value.movements).flat().filter(mov=>{
+    return mov >0 
+  }).reduce((accumulator , current)=> accumulator+current)
+  return storeAllMovements
+} 
+let output =  calculateSumOfDeposits(accounts);
+console.log(output)
+
+console.log(accounts)
 
 
 
