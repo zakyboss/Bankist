@@ -76,9 +76,13 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 /////////////////////////////////////////////////
 
 
-const displayMovements = function (movements){
- movements.forEach(function(mov ,i ){
+const displayMovements = function (movements,sort=false){
+  const movs = sort ? movements.slice().sort((a,b)=> a-b) :movements
+  movs.forEach(function(mov ,i ){
     const type = mov>0 ? 'deposit':'withdrawal' 
+   
+   
+   
     const html = `
       <div class="movements">
         <div class="movements__row">
@@ -209,6 +213,22 @@ const updateUI=function (currentAccount){
   calDisplaySummary(currentAccount);
 
 }
+
+// Transfer  logic 
+btnLoan.addEventListener('click',function(e){
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value)
+  if (amount>0 && currentAccount.movements.some(mov=> mov>=amount*0.1)){
+    currentAccount.movements.push(amount)
+updateUI(currentAccount)
+    inputLoanAmount.value = ''
+  }
+})
+
+
+
+
+
 btnClose.addEventListener('click', function (e){
   e.preventDefault();
   if (
@@ -226,6 +246,13 @@ containerApp.style.opacity=0;
   
 })
 
+let sorted=false;
+
+btnSort.addEventListener('click',function(e){
+  e.preventDefault();
+  displayMovements(currentAccount.movements,!sorted);
+  sorted=!sorted;
+})
 
 
 
